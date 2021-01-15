@@ -6,6 +6,8 @@ const deviceSchema = new Schema({
   os: { type: String },
   manufacturer: { type: String },
   lastCheckedOutDate: { type: Date },
+  lastCheckedOutBy: { type: String },
+  feedback: { type: String },
   isCheckedOut: { type: Boolean, default: false },
 });
 
