@@ -47,6 +47,24 @@ const exportable = {
       res.status(400).send(error);
     }
   },
+
+  feedback: async (req, res) => {
+    try {
+      const { id, feedback } = req.body;
+      const data = await deviceModel.findByIdAndUpdate(
+        id,
+        { feedback },
+        { new: true }
+      );
+      if (data) {
+        res.send({ message: "Feedback given successfully" });
+      } else {
+        res.status(400).send({ message: "No Such device found" });
+      }
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  },
 };
 
 module.exports = exportable;
