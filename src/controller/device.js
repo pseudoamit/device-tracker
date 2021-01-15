@@ -34,6 +34,19 @@ const exportable = {
       res.status(400).send(error);
     }
   },
+
+  list: async (req, res) => {
+    try {
+      const data = await deviceModel.find();
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(400).send({ message: "No device available" });
+      }
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  },
 };
 
 module.exports = exportable;
