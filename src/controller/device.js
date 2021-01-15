@@ -20,6 +20,20 @@ const exportable = {
       res.status(400).send(error);
     }
   },
+
+  delete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = await deviceModel.findByIdAndDelete(id);
+      if (data) {
+        res.send({ message: "Device successfully removed from storage" });
+      } else {
+        res.status(400).send({ message: "No Such device found" });
+      }
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  },
 };
 
 module.exports = exportable;
