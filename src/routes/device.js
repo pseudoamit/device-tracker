@@ -7,6 +7,7 @@ router.put("/", deviceController.create);
 router.delete("/:id", deviceController.delete);
 router.get("/weekly-record", deviceController.weeklyRecord);
 router.get("/", deviceController.list);
+router.get("/:id", deviceController.read);
 router.post("/feedback", deviceController.feedback);
 router.post("/checkout", deviceController.checkout);
 

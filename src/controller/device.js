@@ -15,7 +15,7 @@ const exportable = {
           res.status(400).send({ message: "Error in inserting data" });
         }
       } else {
-        res.status(404).send({ message: "Storage has already full" });
+        res.status(401).send({ message: "Storage has already full" });
       }
     } catch (error) {
       res.status(417).send({ message: "Unexpected error" });
@@ -45,6 +45,20 @@ const exportable = {
         res.send(data);
       } else {
         res.status(208).send({ message: "No device available" });
+      }
+    } catch (error) {
+      res.status(417).send({ message: "Unexpected error" });
+    }
+  },
+  // Read a particular device data
+  read: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = await deviceModel.findById(id);
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(208).send({ message: "No Such device found" });
       }
     } catch (error) {
       res.status(417).send({ message: "Unexpected error" });
